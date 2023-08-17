@@ -1,4 +1,15 @@
-import { BaseEntity, Entity, Column, PrimaryGeneratedColumn } from "typeorm";
+import {
+  BaseEntity,
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  JoinColumn,
+  OneToMany,
+} from "typeorm";
+import { Examination } from "./Examination";
+import { Patient } from "./Patient";
+import { Report } from "./Report";
 
 @Entity("scheduledExamination")
 export class ScheduledExamination extends BaseEntity {
@@ -17,9 +28,17 @@ export class ScheduledExamination extends BaseEntity {
   @Column()
   price: number;
 
-  @Column()
-  patientId: number;
+  @ManyToOne(
+    () => Examination,
+    (examination) => examination.scheduledExaminations
+  )
+  @JoinColumn({ name: "examinationId" })
+  examination: Examination;
 
-  @Column()
-  examinationId: number;
+  @ManyToOne(() => Patient, (patient) => patient.scheduledExaminations)
+  @JoinColumn({ name: "patientId" })
+  patient: Patient;
+
+  @OneToMany(() => Report, (report) => report.scheduledExamination)
+  reports: Report[];
 }

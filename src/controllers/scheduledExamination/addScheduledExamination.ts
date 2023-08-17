@@ -1,16 +1,15 @@
 import { ScheduledExamination } from "../../entities/ScheduledExamination";
 
 const addScheduledExamination = async (req: any, res: any) => {
-  const { reasonForComing, time, date, price, patientId, examinationId } =
-    req.body;
+  const { reasonForComing, time, date, price, patient, examination } = req.body;
 
   if (
     !reasonForComing ||
     !time ||
     !date ||
     !price ||
-    !patientId ||
-    !examinationId
+    !patient ||
+    !examination
   ) {
     res.status(400).json({ msg: "Please fill out all required fields." });
     return;
@@ -22,8 +21,8 @@ const addScheduledExamination = async (req: any, res: any) => {
       time,
       date,
       price,
-      patientId,
-      examinationId,
+      patient,
+      examination,
     });
     await scheduledExamination.save();
     res

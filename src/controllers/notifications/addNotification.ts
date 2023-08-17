@@ -1,9 +1,9 @@
 import { Notification } from "../../entities/Notification";
 
 const addNotification = async (req: any, res: any) => {
-  const { message, patientId } = req.body;
+  const { message, patient } = req.body;
 
-  if (!message || !patientId) {
+  if (!message || !patient) {
     res.status(400).json({ msg: "Please fill out all required fields." });
     return;
   }
@@ -11,7 +11,7 @@ const addNotification = async (req: any, res: any) => {
   try {
     const notification = Notification.create({
       message,
-      patientId,
+      patient,
     });
     await notification.save();
     res.status(201).json({ msg: "Notification was successfully created." });

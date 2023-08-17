@@ -2,8 +2,9 @@ import { MessageToManager } from "../../entities/MessageToManager";
 
 const getMessageToManager = async (req: any, res: any) => {
   const id = parseInt(req.params.id);
-  MessageToManager.findOneBy({
-    id: id,
+  MessageToManager.findOne({
+    where: { id },
+    relations: ["doctor"],
   })
     .then((messageToManager) => {
       if (!messageToManager) {

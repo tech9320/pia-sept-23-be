@@ -1,4 +1,12 @@
-import { BaseEntity, Entity, Column, PrimaryGeneratedColumn } from "typeorm";
+import {
+  BaseEntity,
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  JoinColumn,
+} from "typeorm";
+import { Patient } from "./Patient";
 
 @Entity("notification")
 export class Notification extends BaseEntity {
@@ -13,6 +21,7 @@ export class Notification extends BaseEntity {
   @Column()
   message: string;
 
-  @Column()
-  patientId: number;
+  @ManyToOne(() => Patient, (patient) => patient.notifications)
+  @JoinColumn({ name: "patientId" })
+  patient: Patient;
 }

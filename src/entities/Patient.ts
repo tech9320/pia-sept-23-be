@@ -1,5 +1,7 @@
-import { Entity, Column, CreateDateColumn } from "typeorm";
+import { Entity, Column, CreateDateColumn, OneToMany } from "typeorm";
 import { Manager } from "./Manager";
+import { ScheduledExamination } from "./ScheduledExamination";
+import { Notification } from "./Notification";
 
 @Entity("patient")
 export class Patient extends Manager {
@@ -10,4 +12,13 @@ export class Patient extends Manager {
 
   @CreateDateColumn()
   createdAt: Date;
+
+  @OneToMany(
+    () => ScheduledExamination,
+    (scheduledExamination) => scheduledExamination.patient
+  )
+  scheduledExaminations: ScheduledExamination[];
+
+  @OneToMany(() => Notification, (notification) => notification.patient)
+  notifications: Notification[];
 }

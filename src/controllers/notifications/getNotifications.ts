@@ -1,7 +1,9 @@
 import { Notification } from "../../entities/Notification";
 
 const getNotifications = async (req: any, res: any) => {
-  Notification.find()
+  Notification.find({
+    relations: ["patient"],
+  })
     .then((notification) => {
       res.status(200).json({ examinations: notification });
     })

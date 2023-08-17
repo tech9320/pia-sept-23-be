@@ -2,9 +2,9 @@ import { Examination } from "../../entities/Examination";
 
 const updateExamination = async (req: any, res: any) => {
   const id = parseInt(req.params.id);
-  const { doctorId, examinationTypeId } = req.body;
+  const { doctor, examinationType } = req.body;
 
-  if (!doctorId || !examinationTypeId) {
+  if (!doctor || !examinationType) {
     res.status(400).json({ msg: "Please fill out all required fields." });
     return;
   }
@@ -20,8 +20,8 @@ const updateExamination = async (req: any, res: any) => {
     return;
   } else {
     Examination.update(id, {
-      doctorId,
-      examinationTypeId,
+      doctor,
+      examinationType,
     })
       .then(() => {
         res.status(200).json({ msg: "Examination was successfully updated." });

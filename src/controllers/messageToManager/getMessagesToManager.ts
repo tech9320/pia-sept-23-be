@@ -1,7 +1,9 @@
 import { MessageToManager } from "../../entities/MessageToManager";
 
 const getMessagesToManager = async (req: any, res: any) => {
-  MessageToManager.find()
+  MessageToManager.find({
+    relations: ["doctor"],
+  })
     .then((messageToManager) => {
       res.status(200).json({ messageToManager: messageToManager });
     })

@@ -2,9 +2,9 @@ import { Report } from "../../entities/Report";
 
 const addReport = async (req: any, res: any) => {
   const {
-    examinationId,
-    doctorId,
-    patientId,
+    scheduledExamination,
+    doctor,
+    patient,
     diagnosis,
     therapy,
     controlDate,
@@ -12,9 +12,9 @@ const addReport = async (req: any, res: any) => {
   } = req.body;
 
   if (
-    !examinationId ||
-    !doctorId ||
-    !patientId ||
+    !scheduledExamination ||
+    !doctor ||
+    !patient ||
     !diagnosis ||
     !therapy ||
     !controlDate ||
@@ -26,9 +26,7 @@ const addReport = async (req: any, res: any) => {
 
   try {
     const report = Report.create({
-      examinationId,
-      doctorId,
-      patientId,
+      scheduledExamination,
       diagnosis,
       therapy,
       controlDate,

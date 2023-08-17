@@ -2,8 +2,9 @@ import { Notification } from "../../entities/Notification";
 
 const getNotification = async (req: any, res: any) => {
   const id = parseInt(req.params.id);
-  Notification.findOneBy({
-    id: id,
+  Notification.findOne({
+    where: { id },
+    relations: ["patient"],
   })
     .then((notification) => {
       if (!notification) {

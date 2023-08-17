@@ -2,9 +2,9 @@ import { Notification } from "../../entities/Notification";
 
 const updateNotification = async (req: any, res: any) => {
   const id = parseInt(req.params.id);
-  const { message, patientId, read } = req.body;
+  const { message, patient, read } = req.body;
 
-  if (!message || !patientId || !read) {
+  if (!message || !patient || !read) {
     res.status(400).json({ msg: "Please fill out all required fields." });
     return;
   }
@@ -21,7 +21,7 @@ const updateNotification = async (req: any, res: any) => {
   } else {
     Notification.update(id, {
       message,
-      patientId,
+      patient,
       read,
     })
       .then(() => {

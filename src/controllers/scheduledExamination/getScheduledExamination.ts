@@ -2,8 +2,16 @@ import { ScheduledExamination } from "../../entities/ScheduledExamination";
 
 const getScheduledExamination = async (req: any, res: any) => {
   const id = parseInt(req.params.id);
-  ScheduledExamination.findOneBy({
-    id: id,
+  ScheduledExamination.findOne({
+    where: { id },
+    relations: [
+      "patient",
+      "examination",
+      "examination.doctor",
+      "examination.doctor.specialization",
+      "examination.examinationType",
+      "examination.examinationType.specialization",
+    ],
   })
     .then((scheduledExamination) => {
       if (!scheduledExamination) {

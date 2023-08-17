@@ -3,9 +3,9 @@ import { Report } from "../../entities/Report";
 const updateReport = async (req: any, res: any) => {
   const id = parseInt(req.params.id);
   const {
-    examinationId,
-    doctorId,
-    patientId,
+    scheduledExamination,
+    doctor,
+    patient,
     diagnosis,
     therapy,
     controlDate,
@@ -13,9 +13,9 @@ const updateReport = async (req: any, res: any) => {
   } = req.body;
 
   if (
-    !examinationId ||
-    !doctorId ||
-    !patientId ||
+    !scheduledExamination ||
+    !doctor ||
+    !patient ||
     !diagnosis ||
     !therapy ||
     !controlDate ||
@@ -34,9 +34,7 @@ const updateReport = async (req: any, res: any) => {
     return;
   } else {
     Report.update(id, {
-      examinationId,
-      doctorId,
-      patientId,
+      scheduledExamination,
       diagnosis,
       therapy,
       controlDate,

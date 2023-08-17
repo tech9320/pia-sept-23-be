@@ -2,7 +2,7 @@ import { ScheduledExamination } from "../../entities/ScheduledExamination";
 
 const updateScheduledExamination = async (req: any, res: any) => {
   const id = parseInt(req.params.id);
-  const { reasonForComing, time, date, price, patientId, examinationId } =
+  const { reasonForComing, time, date, price, patient, examination } =
     req.body;
 
   if (
@@ -10,8 +10,8 @@ const updateScheduledExamination = async (req: any, res: any) => {
     !time ||
     !date ||
     !price ||
-    !patientId ||
-    !examinationId
+    !patient ||
+    !examination
   ) {
     res.status(400).json({ msg: "Please fill out all required fields." });
     return;
@@ -32,8 +32,8 @@ const updateScheduledExamination = async (req: any, res: any) => {
       time,
       date,
       price,
-      patientId,
-      examinationId,
+      patient,
+      examination,
     })
       .then(() => {
         res

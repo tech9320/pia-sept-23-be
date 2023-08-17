@@ -2,8 +2,9 @@ import { ExaminationType } from "../../entities/ExaminationType";
 
 const getExaminationType = async (req: any, res: any) => {
   const id = parseInt(req.params.id);
-  ExaminationType.findOneBy({
-    id: id,
+  ExaminationType.findOne({
+    where: { id },
+    relations: ["specialization"],
   })
     .then((examinationType) => {
       if (!examinationType) {

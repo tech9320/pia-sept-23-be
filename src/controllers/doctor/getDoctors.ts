@@ -1,7 +1,9 @@
 import { Doctor } from "../../entities/Doctor";
 
 const getDoctors = async (req: any, res: any) => {
-  Doctor.find()
+  Doctor.find({
+    relations: ["specialization"],
+  })
     .then((doctors) => {
       res.status(200).json({ doctors: doctors });
     })

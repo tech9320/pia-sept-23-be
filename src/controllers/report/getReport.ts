@@ -2,8 +2,16 @@ import { Report } from "../../entities/Report";
 
 const getReport = async (req: any, res: any) => {
   const id = parseInt(req.params.id);
-  Report.findOneBy({
-    id: id,
+  Report.findOne({
+    where: { id },
+    relations: [
+      "scheduledExamination",
+      "scheduledExamination.patient",
+      "scheduledExamination.examination",
+      "scheduledExamination.examination.doctor.specialization",
+      "scheduledExamination.examination.examinationType",
+      "scheduledExamination.examination.examinationType.specialization",
+    ],
   })
     .then((report) => {
       if (!report) {

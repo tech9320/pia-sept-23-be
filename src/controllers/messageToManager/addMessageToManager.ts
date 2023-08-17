@@ -1,9 +1,9 @@
 import { MessageToManager } from "../../entities/MessageToManager";
 
 const addMessageToManager = async (req: any, res: any) => {
-  const { message, doctorId } = req.body;
+  const { message, doctor } = req.body;
 
-  if (!message || !doctorId) {
+  if (!message || !doctor) {
     res.status(400).json({ msg: "Please fill out all required fields." });
     return;
   }
@@ -11,7 +11,7 @@ const addMessageToManager = async (req: any, res: any) => {
   try {
     const messageToManager = MessageToManager.create({
       message,
-      doctorId,
+      doctor,
     });
     await messageToManager.save();
     res

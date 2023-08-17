@@ -12,12 +12,9 @@ export class MessageToManager extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
-  doctorId: number;
+  @ManyToOne(() => Doctor, (doctor) => doctor.messages)
+  doctor: Doctor;
 
   @Column()
   message: string;
-
-  @ManyToOne(() => Doctor, (doctor) => doctor.messages)
-  doctor: Doctor;
 }

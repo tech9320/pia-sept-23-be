@@ -2,9 +2,9 @@ import { ExaminationType } from "../../entities/ExaminationType";
 
 const updateExaminationType = async (req: any, res: any) => {
   const id = parseInt(req.params.id);
-  const { type, specializationId } = req.body;
+  const { type, specialization } = req.body;
 
-  if (!type || !specializationId) {
+  if (!type || !specialization) {
     res.status(400).json({ msg: "Please fill out all required fields." });
     return;
   }
@@ -21,6 +21,7 @@ const updateExaminationType = async (req: any, res: any) => {
   } else {
     ExaminationType.update(id, {
       type,
+      specialization,
     })
       .then(() => {
         res

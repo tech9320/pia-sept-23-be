@@ -1,9 +1,9 @@
 import { ExaminationType } from "../../entities/ExaminationType";
 
 const addExaminationType = async (req: any, res: any) => {
-  const { type, specializationId } = req.body;
+  const { type, specialization } = req.body;
 
-  if (!type || !specializationId) {
+  if (!type || !specialization) {
     res.status(400).json({ msg: "Please fill out all required fields." });
     return;
   }
@@ -11,7 +11,7 @@ const addExaminationType = async (req: any, res: any) => {
   try {
     const examinationType = ExaminationType.create({
       type,
-      specializationId,
+      specialization,
     });
     await examinationType.save();
     res.status(201).json({ msg: "Examination type was successfully created." });
