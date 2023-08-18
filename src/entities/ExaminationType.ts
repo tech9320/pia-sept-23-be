@@ -3,12 +3,10 @@ import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
-  OneToMany,
   JoinColumn,
   ManyToOne,
 } from "typeorm";
 import { Specialization } from "./Specialization";
-import { Examination } from "./Examination";
 
 @Entity("examinationType")
 export class ExaminationType extends BaseEntity {
@@ -24,7 +22,4 @@ export class ExaminationType extends BaseEntity {
 
   @Column()
   type: string;
-
-  @OneToMany(() => Examination, (examination) => examination.examinationType)
-  examinations: Examination[];
 }

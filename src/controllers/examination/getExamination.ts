@@ -4,12 +4,7 @@ const getExamination = async (req: any, res: any) => {
   const id = parseInt(req.params.id);
   Examination.findOne({
     where: { id },
-    relations: [
-      "doctor",
-      "examinationType",
-      "doctor.specialization",
-      "examinationType.specialization",
-    ],
+    relations: ["doctor", "doctor.specialization"],
   })
     .then((examination) => {
       if (!examination) {

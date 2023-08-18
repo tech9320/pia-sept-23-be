@@ -3,12 +3,7 @@ import { Examination } from "../../entities/Examination";
 const getExaminationsByDoctor = async (req: any, res: any) => {
   const id = parseInt(req.params.id);
   Examination.find({
-    relations: [
-      "doctor",
-      "examinationType",
-      "doctor.specialization",
-      "examinationType.specialization",
-    ],
+    relations: ["doctor", "doctor.specialization"],
   })
     .then((examinations) => {
       const filteredExaminations: Examination[] = [];

@@ -33,7 +33,7 @@ const connectDB = new DataSource({
     RejectedEmail,
     RejectedUserName,
   ],
-  synchronize: true,
+  synchronize: false,
 });
 
 connectDB
