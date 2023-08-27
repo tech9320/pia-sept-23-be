@@ -1,5 +1,7 @@
 import connectDB from "./db/connection";
 import express from "express";
+import cors from 'cors';
+
 const app = express();
 
 import { patientRouter } from "./routes/patient";
@@ -15,6 +17,7 @@ import { reportRouter } from "./routes/report";
 import notFoundMiddleware from "./middleware/notFound";
 
 // middleware
+app.use(cors());
 app.use(express.json());
 app.use(
   "/api/v1/",
