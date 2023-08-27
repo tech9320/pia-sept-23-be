@@ -10,7 +10,7 @@ import deletePatient from "../controllers/patient/deletePatient";
 import updatePatient from "../controllers/patient/updatePatient";
 
 router.get("/patient", getPatients);
-router.get("/patient/login", getPatientLogin);
+router.post("/patient/login", getPatientLogin);
 router.get("/patient/:id", getPatient);
 router.post("/patient", addPatient);
 router.delete("/patient/:id", deletePatient);

@@ -9,7 +9,7 @@ import deleteDoctor from "../controllers/doctor/deleteDoctor";
 import updateDoctor from "../controllers/doctor/updateDoctor";
 
 router.get("/doctor", getDoctors);
-router.get("/doctor/login", getDoctorLogin);
+router.post("/doctor/login", getDoctorLogin);
 router.get("/doctor/:id", getDoctor);
 router.post("/doctor", addDoctor);
 router.delete("/doctor/:id", deleteDoctor);
