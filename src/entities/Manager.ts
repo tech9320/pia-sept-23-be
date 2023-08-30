@@ -10,7 +10,7 @@ export class Manager extends BaseEntity {
   })
   userName: string;
 
-  @Column()
+  @Column({select: false})
   password: string;
 
   @Column()
