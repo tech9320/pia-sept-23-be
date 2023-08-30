@@ -25,9 +25,6 @@ export class ScheduledExamination extends BaseEntity {
   @Column()
   date: Date;
 
-  @Column()
-  price: number;
-
   @ManyToOne(
     () => Examination,
     (examination) => examination.scheduledExaminations

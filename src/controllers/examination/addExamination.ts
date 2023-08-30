@@ -1,7 +1,7 @@
 import { Examination } from "../../entities/Examination";
 
 const addExamination = async (req: any, res: any) => {
-  const { duration, doctor, examinationType } = req.body;
+  const { duration, doctor, examinationType, price } = req.body;
 
   if (!doctor || !examinationType) {
     res.status(400).json({ msg: "Please fill out all required fields." });
@@ -13,6 +13,7 @@ const addExamination = async (req: any, res: any) => {
       duration,
       doctor,
       examinationType,
+      price
     });
     await examination.save();
     res.status(201).json({ msg: "Examination was successfully created." });

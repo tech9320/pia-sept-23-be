@@ -21,6 +21,9 @@ export class Examination extends BaseEntity {
   duration: string;
 
   @Column()
+  price: number;
+
+  @Column()
   examinationType: string;
 
   @ManyToOne(() => Doctor, (doctor) => doctor.examinations)

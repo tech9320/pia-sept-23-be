@@ -20,7 +20,6 @@ const addScheduledExamination = async (req: any, res: any) => {
       reasonForComing,
       time,
       date,
-      price,
       patient,
       examination,
     });
