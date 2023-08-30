@@ -11,13 +11,14 @@ import { Notification } from "../entities/Notification";
 import { MessageToManager } from "../entities/MessageToManager";
 import { RejectedEmail } from "../entities/rejectedEmail";
 import { RejectedUserName } from "../entities/rejectedUserName";
+import { PendingRegistration } from "../entities/PendingRegistration";
 
 const connectDB = new DataSource({
   type: "postgres",
   host: "localhost",
   port: 5432,
-  username: "borismirkovic",
-  password: "Varvarin369NEW",
+  username: "admin",
+  password: "admin123",
   database: "pia-sept-23",
   entities: [
     Patient,
@@ -32,8 +33,9 @@ const connectDB = new DataSource({
     MessageToManager,
     RejectedEmail,
     RejectedUserName,
+    PendingRegistration
   ],
-  synchronize: false,
+  synchronize: true,
 });
 
 connectDB
