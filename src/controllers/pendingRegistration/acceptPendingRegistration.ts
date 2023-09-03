@@ -15,7 +15,8 @@ const acceptPendingRegistration = async (req: any, res: any) => {
         res.status(201).json({msg: 'success'});
     }
     catch (e) {
-        console.log(e)
+        console.log(e);
+        // TODO: add message when userName or email exist
         res.status(500).json({ msg: "Something went wrong. Please try again later." })
     }
 }
