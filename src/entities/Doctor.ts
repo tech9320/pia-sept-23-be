@@ -1,8 +1,9 @@
-import { Entity, Column, OneToMany, ManyToOne, JoinColumn } from "typeorm";
+import { Entity, Column, OneToMany, ManyToOne, JoinColumn, ManyToMany, JoinTable } from "typeorm";
 import { Manager } from "./Manager";
 import { MessageToManager } from "./MessageToManager";
 import { Specialization } from "./Specialization";
 import { ScheduledExamination } from "./ScheduledExamination";
+import { Examination } from "./Examination";
 
 @Entity("doctor")
 export class Doctor extends Manager {
@@ -28,4 +29,8 @@ export class Doctor extends Manager {
 
   @OneToMany(() => ScheduledExamination, (examination) => examination.doctor)
   scheduledExaminations: ScheduledExamination[];
+
+  @ManyToMany(() => Examination)
+  @JoinTable({name: 'doctor_examinations'})
+  examinations: Examination[]
 }
