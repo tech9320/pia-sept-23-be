@@ -10,6 +10,7 @@ import {
 import { Examination } from "./Examination";
 import { Patient } from "./Patient";
 import { Report } from "./Report";
+import { Doctor } from "./Doctor";
 
 @Entity("scheduledExamination")
 export class ScheduledExamination extends BaseEntity {
@@ -27,14 +28,18 @@ export class ScheduledExamination extends BaseEntity {
 
   @ManyToOne(
     () => Examination,
-    (examination) => examination.scheduledExaminations
+    (examination) => examination
   )
-  @JoinColumn({ name: "examinationId" })
+  @JoinColumn({ name: "examination_id" })
   examination: Examination;
 
   @ManyToOne(() => Patient, (patient) => patient.scheduledExaminations)
-  @JoinColumn({ name: "patientId" })
+  @JoinColumn({ name: "patient_id" })
   patient: Patient;
+
+  @ManyToOne(() => Doctor, (doctor) => doctor.scheduledExaminations)
+  @JoinColumn({ name: 'doctor_id' })
+  doctor: Doctor
 
   @OneToMany(() => Report, (report) => report.scheduledExamination)
   reports: Report[];

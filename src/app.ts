@@ -7,7 +7,6 @@ const app = express();
 import { patientRouter } from "./routes/patient";
 import { doctorRouter } from "./routes/doctor";
 import { managerRouter } from "./routes/manager";
-import { examinationTypeRouter } from "./routes/examinationType";
 import { specializationRouter } from "./routes/specialization";
 import { examinationRouter } from "./routes/examination";
 import { scheduledExaminationRouter } from "./routes/scheduledExamination";
@@ -25,7 +24,6 @@ app.use(
   patientRouter,
   doctorRouter,
   managerRouter,
-  examinationTypeRouter,
   specializationRouter,
   examinationRouter,
   scheduledExaminationRouter,

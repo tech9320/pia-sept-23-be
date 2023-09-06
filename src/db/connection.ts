@@ -5,7 +5,6 @@ import { Manager } from "../entities/Manager";
 import { Examination } from "../entities/Examination";
 import { ScheduledExamination } from "../entities/ScheduledExamination";
 import { Report } from "../entities/Report";
-import { ExaminationType } from "../entities/ExaminationType";
 import { Specialization } from "../entities/Specialization";
 import { Notification } from "../entities/Notification";
 import { MessageToManager } from "../entities/MessageToManager";
@@ -27,7 +26,6 @@ const connectDB = new DataSource({
     Examination,
     ScheduledExamination,
     Report,
-    ExaminationType,
     Specialization,
     Notification,
     MessageToManager,

@@ -3,17 +3,20 @@ import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
+  OneToMany,
   ManyToOne,
   JoinColumn,
-  OneToMany,
 } from "typeorm";
-import { Doctor } from "./Doctor";
 import { ScheduledExamination } from "./ScheduledExamination";
+import { Specialization } from "./Specialization";
 
 @Entity("examination")
 export class Examination extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
+
+  @Column()
+  type: string;
 
   @Column({
     default: "30min",
@@ -23,16 +26,16 @@ export class Examination extends BaseEntity {
   @Column()
   price: number;
 
-  @Column()
-  examinationType: string;
-
-  @ManyToOne(() => Doctor, (doctor) => doctor.examinations)
-  @JoinColumn({ name: "doctorId" })
-  doctor: Doctor;
+  @ManyToOne(
+    () => Specialization,
+    (specialization) => specialization.id
+  )
+  @JoinColumn({name: 'specialization_id'})
+  specialization: Specialization
 
   @OneToMany(
     () => ScheduledExamination,
-    (scheduledExamination) => scheduledExamination.examination
+    (scheduledExamination) => scheduledExamination.examination.id
   )
-  scheduledExaminations: ScheduledExamination[];
+  scheduledExaminations: ScheduledExamination;
 }

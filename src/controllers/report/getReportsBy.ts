@@ -23,7 +23,7 @@ const getReportsBy = async (req: any, res: any) => {
             filteredReports.push(report);
           }
         } else if (type === "doctor") {
-          if (report.scheduledExamination.examination.doctor.id === id) {
+          if (report.scheduledExamination.doctor.id === id) {
             filteredReports.push(report);
           }
         }

@@ -2,7 +2,7 @@ import { Entity, Column, OneToMany, ManyToOne, JoinColumn } from "typeorm";
 import { Manager } from "./Manager";
 import { MessageToManager } from "./MessageToManager";
 import { Specialization } from "./Specialization";
-import { Examination } from "./Examination";
+import { ScheduledExamination } from "./ScheduledExamination";
 
 @Entity("doctor")
 export class Doctor extends Manager {
@@ -20,12 +20,12 @@ export class Doctor extends Manager {
   officeDepartment: string;
 
   @ManyToOne(() => Specialization, (specialization) => specialization.doctors)
-  @JoinColumn({ name: "specializationId" })
+  @JoinColumn({name: "specialization_id"})
   specialization: Specialization;
 
   @OneToMany(() => MessageToManager, (message) => message.doctor)
   messages: MessageToManager[];
 
-  @OneToMany(() => Examination, (examination) => examination.doctor)
-  examinations: Examination[];
+  @OneToMany(() => ScheduledExamination, (examination) => examination.doctor)
+  scheduledExaminations: ScheduledExamination[];
 }

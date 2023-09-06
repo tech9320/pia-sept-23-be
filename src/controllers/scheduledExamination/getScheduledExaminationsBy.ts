@@ -23,7 +23,7 @@ const getScheduledExaminationsBy = async (req: any, res: any) => {
             filteredScheduledExaminations.push(scheduledExamination);
           }
         } else if (type === "doctor") {
-          if (scheduledExamination.examination.doctor.id === id) {
+          if (scheduledExamination.doctor.id === id) {
             filteredScheduledExaminations.push(scheduledExamination);
           }
         }
