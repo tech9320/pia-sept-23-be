@@ -10,15 +10,17 @@ import updateExamination from "../controllers/examination/updateExamination";
 import addExaminationToDoctor from "../controllers/examination/addExaminationToDoctor";
 import getExaminationsByDoctor from "../controllers/examination/getExaminationsByDoctor";
 import addExaminationRequest from "../controllers/examination/addExaminationRequest";
+import getExaminationRequests from "../controllers/examination/getExaminationRequests";
 
-router.get("/examinations", getExaminations);
-router.get("/examination/:id", getExamination);
+router.post("/examination/request", addExaminationRequest);
+router.get("/examination/requests", getExaminationRequests);
 router.get("/examination/specialization/:id", getExaminationsBySpecialization);
 router.get("/examination/getExaminationsByDoctor/:id", getExaminationsByDoctor)
+router.get("/examinations", getExaminations);
+router.get("/examination/:id", getExamination);
 router.post("/examination", addExamination);
 router.post('/examination/addToDoctor', addExaminationToDoctor);
 router.delete("/examination/:id", deleteExamination);
 router.patch("/examination/:id", updateExamination);
-router.post("/examination/addExaminationRequest", addExaminationRequest);
 
 export { router as examinationRouter };
