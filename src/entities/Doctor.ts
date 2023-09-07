@@ -31,6 +31,10 @@ export class Doctor extends Manager {
   scheduledExaminations: ScheduledExamination[];
 
   @ManyToMany(() => Examination)
-  @JoinTable({name: 'doctor_examinations'})
+  @JoinTable({name: 'doctor_examination'})
   examinations: Examination[]
+
+  @ManyToMany(() => Examination)
+  @JoinTable({name: 'examination_request'})
+  examinationRequests: Examination[]
 }
