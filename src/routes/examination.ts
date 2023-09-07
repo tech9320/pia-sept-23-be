@@ -10,7 +10,7 @@ import updateExamination from "../controllers/examination/updateExamination";
 import addExaminationToDoctor from "../controllers/examination/addExaminationToDoctor";
 import getExaminationsByDoctor from "../controllers/examination/getExaminationsByDoctor";
 
-router.get("/examination", getExaminations);
+router.get("/examinations", getExaminations);
 router.get("/examination/:id", getExamination);
 router.get("/examination/specialization/:id", getExaminationsBySpecialization);
 router.get("/examination/getExaminationsByDoctor/:id", getExaminationsByDoctor)
