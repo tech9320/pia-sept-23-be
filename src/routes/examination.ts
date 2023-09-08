@@ -11,7 +11,11 @@ import addExaminationToDoctor from "../controllers/examination/addExaminationToD
 import getExaminationsByDoctor from "../controllers/examination/getExaminationsByDoctor";
 import addExaminationRequest from "../controllers/examination/addExaminationRequest";
 import getExaminationRequests from "../controllers/examination/getExaminationRequests";
+import { addNewExaminationRequest } from "../controllers/examination/addNewExaminationRequest";
+import { evaluateNewExaminationRequests } from "../controllers/examination/evaluateNewExaminationRequest";
 
+router.post("/examination/evaluate", evaluateNewExaminationRequests);
+router.post("/examination/new", addNewExaminationRequest);
 router.post("/examination/request", addExaminationRequest);
 router.get("/examination/requests", getExaminationRequests);
 router.get("/examination/specialization/:id", getExaminationsBySpecialization);

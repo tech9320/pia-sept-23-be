@@ -38,4 +38,7 @@ export class Examination extends BaseEntity {
     (scheduledExamination) => scheduledExamination.examination.id
   )
   scheduledExaminations: ScheduledExamination;
+
+  @Column({ default: false })
+  isPendingApproval: boolean;
 }
