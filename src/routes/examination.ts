@@ -13,7 +13,9 @@ import addExaminationRequest from "../controllers/examination/addExaminationRequ
 import getExaminationRequests from "../controllers/examination/getExaminationRequests";
 import { addNewExaminationRequest } from "../controllers/examination/addNewExaminationRequest";
 import { evaluateNewExaminationRequests } from "../controllers/examination/evaluateNewExaminationRequest";
+import getPendingExaminations from "../controllers/examination/getPendingExaminations";
 
+router.get("/examination/pending", getPendingExaminations);
 router.post("/examination/evaluate", evaluateNewExaminationRequests);
 router.post("/examination/new", addNewExaminationRequest);
 router.post("/examination/request", addExaminationRequest);

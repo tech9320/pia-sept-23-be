@@ -2,7 +2,6 @@ import { Examination } from "../../entities/Examination";
 
 export const addNewExaminationRequest = async (req: any, res: any) => {
     const examination = req.body.examination;
-    console.log(examination)
 
     if(!examination) {
         return res.status(400).json({ msg: "Please provide valid data." });
