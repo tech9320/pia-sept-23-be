@@ -3,7 +3,7 @@ import { Patient } from "../../entities/Patient";
 const getPatients = async (req: any, res: any) => {
   Patient.find()
     .then((patients) => {
-      res.status(200).json({ patients: patients });
+      res.status(200).json(patients);
     })
     .catch((err) => {
       res

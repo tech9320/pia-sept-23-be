@@ -7,7 +7,7 @@ import getExaminationsBySpecialization from "../controllers/examination/getExami
 import addExamination from "../controllers/examination/addExamination";
 import deleteExamination from "../controllers/examination/deleteExamination";
 import updateExamination from "../controllers/examination/updateExamination";
-import addExaminationToDoctor from "../controllers/examination/addExaminationToDoctor";
+import evaluateDoctorExaminationRequest from "../controllers/examination/evalueateDoctorEmaxinationRequest";
 import getExaminationsByDoctor from "../controllers/examination/getExaminationsByDoctor";
 import addExaminationRequest from "../controllers/examination/addExaminationRequest";
 import getExaminationRequests from "../controllers/examination/getExaminationRequests";
@@ -16,7 +16,8 @@ import { evaluateNewExaminationRequests } from "../controllers/examination/evalu
 import getPendingExaminations from "../controllers/examination/getPendingExaminations";
 
 router.get("/examination/pending", getPendingExaminations);
-router.post("/examination/evaluate", evaluateNewExaminationRequests);
+router.post('/examination/evaluate', evaluateDoctorExaminationRequest);
+router.post("/examination/evaluateNew", evaluateNewExaminationRequests);
 router.post("/examination/new", addNewExaminationRequest);
 router.post("/examination/request", addExaminationRequest);
 router.get("/examination/requests", getExaminationRequests);
@@ -25,7 +26,6 @@ router.get("/examination/getExaminationsByDoctor/:id", getExaminationsByDoctor)
 router.get("/examinations", getExaminations);
 router.get("/examination/:id", getExamination);
 router.post("/examination", addExamination);
-router.post('/examination/addToDoctor', addExaminationToDoctor);
 router.delete("/examination/:id", deleteExamination);
 router.patch("/examination/:id", updateExamination);
 
