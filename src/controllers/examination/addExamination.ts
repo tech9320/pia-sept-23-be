@@ -1,7 +1,7 @@
 import { Examination } from "../../entities/Examination";
 
 const addExamination = async (req: any, res: any) => {
-  const { duration, type, price, specialization } = req.body;
+  const { durationInMinutes, type, price, specialization } = req.body;
 
   if (!type || !price || !specialization) {
     res.status(400).json({ msg: "Please fill out all required fields." });
@@ -10,7 +10,7 @@ const addExamination = async (req: any, res: any) => {
 
   try {
     const examination = Examination.create({
-      duration,
+      durationInMinutes,
       type,
       price,
       specialization

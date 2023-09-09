@@ -19,9 +19,9 @@ export class Examination extends BaseEntity {
   type: string;
 
   @Column({
-    default: "30min",
+    default: 30,
   })
-  duration: string;
+  durationInMinutes: number;
 
   @Column()
   price: number;
