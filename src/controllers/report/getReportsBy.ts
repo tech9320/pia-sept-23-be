@@ -5,19 +5,18 @@ const getReportsBy = async (req: any, res: any) => {
   const path = req.route.path.split("/");
   const type = path[2];
 
-  Report.find({
-    relations: [
-      "scheduledExamination",
-      "scheduledExamination.patient",
-      "scheduledExamination.examination",
-      "scheduledExamination.examination.doctor.specialization",
-      "scheduledExamination.examination.examinationType",
-      "scheduledExamination.examination.examinationType.specialization",
-    ],
-  })
+  Report.createQueryBuilder('report')
+  .innerJoinAndSelect('report.scheduledExamination', 'scheduledExamination')
+  .innerJoinAndSelect('scheduledExamination.patient', 'patient')
+  .innerJoinAndSelect('scheduledExamination.examination', 'examination')
+  .innerJoinAndSelect('scheduledExamination.doctor', 'doctor')
+  .innerJoinAndSelect('doctor.specialization', 'specialization')
+  .orderBy('scheduledExamination.date', 'DESC')
+  .addOrderBy('scheduledExamination.time', 'DESC')
+  .getMany()
     .then((reports) => {
       const filteredReports: Report[] = [];
-      reports.forEach((report) => {
+      reports.forEach((report: any) => {
         if (type === "patient") {
           if (report.scheduledExamination.patient.id === id) {
             filteredReports.push(report);
