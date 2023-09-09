@@ -9,10 +9,7 @@ const getScheduledExaminationsBy = async (req: any, res: any) => {
     relations: [
       "patient",
       "examination",
-      "examination.doctor",
-      "examination.doctor.specialization",
-      "examination.examinationType",
-      "examination.examinationType.specialization",
+      "doctor"
     ],
   })
     .then((scheduledExaminations) => {
