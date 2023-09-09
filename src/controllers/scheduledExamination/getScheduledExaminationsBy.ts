@@ -11,7 +11,8 @@ const getScheduledExaminationsBy = async (req: any, res: any) => {
       "examination",
       "doctor"
     ],
-  })
+    order: {date: 'ASC', time: 'ASC'}
+  },)
     .then((scheduledExaminations) => {
       const filteredScheduledExaminations: ScheduledExamination[] = [];
       scheduledExaminations.forEach((scheduledExamination) => {
