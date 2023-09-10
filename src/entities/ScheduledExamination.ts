@@ -5,7 +5,7 @@ import {
   PrimaryGeneratedColumn,
   ManyToOne,
   JoinColumn,
-  OneToMany,
+  OneToOne,
 } from "typeorm";
 import { Examination } from "./Examination";
 import { Patient } from "./Patient";
@@ -38,9 +38,9 @@ export class ScheduledExamination extends BaseEntity {
   patient: Patient;
 
   @ManyToOne(() => Doctor, (doctor) => doctor.scheduledExaminations)
-  @JoinColumn({ name: 'doctor_id' })
+  @JoinColumn({ name: "doctor_id" })
   doctor: Doctor
 
-  @OneToMany(() => Report, (report) => report.scheduledExamination)
-  reports: Report[];
+  @OneToOne(() => Report)
+  report: Report;
 }

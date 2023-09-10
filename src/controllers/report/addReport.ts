@@ -3,8 +3,6 @@ import { Report } from "../../entities/Report";
 const addReport = async (req: any, res: any) => {
   const {
     scheduledExamination,
-    doctor,
-    patient,
     diagnosis,
     therapy,
     controlDate,
@@ -13,8 +11,6 @@ const addReport = async (req: any, res: any) => {
 
   if (
     !scheduledExamination ||
-    !doctor ||
-    !patient ||
     !diagnosis ||
     !therapy ||
     !controlDate ||

@@ -3,8 +3,8 @@ import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
-  ManyToOne,
   JoinColumn,
+  OneToOne,
 } from "typeorm";
 import { ScheduledExamination } from "./ScheduledExamination";
 
@@ -25,10 +25,7 @@ export class Report extends BaseEntity {
   @Column()
   controlTime: string;
 
-  @ManyToOne(
-    () => ScheduledExamination,
-    (scheduledExamination) => scheduledExamination.reports
-  )
-  @JoinColumn({ name: "scheduledExaminationId" })
+  @OneToOne(() => ScheduledExamination)
+  @JoinColumn()
   scheduledExamination: ScheduledExamination;
 }
