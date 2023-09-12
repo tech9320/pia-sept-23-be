@@ -11,6 +11,7 @@ import { MessageToManager } from "../entities/MessageToManager";
 import { RejectedEmail } from "../entities/rejectedEmail";
 import { RejectedUserName } from "../entities/rejectedUserName";
 import { PendingRegistration } from "../entities/PendingRegistration";
+import Session from "../entities/Session";
 
 const connectDB = new DataSource({
   type: "postgres",
@@ -31,7 +32,8 @@ const connectDB = new DataSource({
     MessageToManager,
     RejectedEmail,
     RejectedUserName,
-    PendingRegistration
+    PendingRegistration,
+    Session
   ],
   synchronize: true,
 });

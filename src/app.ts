@@ -15,6 +15,7 @@ import { messageToManagertRouter } from "./routes/messageToManager";
 import { reportRouter } from "./routes/report";
 import notFoundMiddleware from "./middleware/notFound";
 import { pendingRegistrationRouter } from "./routes/pendingRegistration";
+import { authRouter } from "./routes/auth";
 
 // middleware
 app.use(cors());
@@ -30,7 +31,8 @@ app.use(
   notificationRouter,
   messageToManagertRouter,
   reportRouter,
-  pendingRegistrationRouter
+  pendingRegistrationRouter,
+  authRouter
 );
 app.use(notFoundMiddleware);
 
