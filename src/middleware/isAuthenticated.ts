@@ -1,31 +1,30 @@
-import { Patient } from "../../entities/Patient";
-import Session from "../../entities/Session";
-import { Doctor } from "../../entities/Doctor";
-import { Manager } from "../../entities/Manager";
+import { Doctor } from "../entities/Doctor";
+import { Manager } from "../entities/Manager";
+import { Patient } from "../entities/Patient";
+import Session from "../entities/Session";
 
-
-const autoLogin = async (req: any, res: any) => {
+export const isAuthenticated = async (req: any, res: any, next: any) => {
     const sessionId = req.cookies.sessionId;
+    console.log(req.cookies)
     if(!sessionId) {
-        return res.status(401).json({msg: 'Session not found.'});
+        return res.status(401).json({msg: 'Unauthorized.'});
     }
 
     try {
         const session = await Session.findOneBy({id: sessionId});
-        
         if(!session) {
             return res.status(401).json({msg: 'Session not found.'});
         }
 
         if(new Date(session.expiresAt) < new Date()) {
             await Session.delete({id: sessionId});
-            return res.status(401).json({msg: 'Session expired'})
+            return res.status(401).json({msg: 'Session expired'});
         }
         
         const { userId, userRole } = session;
         let user;
         if(userRole === 'patient') {
-            user = await Patient.findOneBy({id: userId})
+            user = await Patient.findOneBy({id: userId});
         }
         if(userRole === 'doctor') {
             user = await Doctor.createQueryBuilder('doctor')
@@ -33,7 +32,7 @@ const autoLogin = async (req: any, res: any) => {
             .getOne();
         }
         if(userRole === 'manager') {
-            user = await Manager.findOneBy({id: userId})
+            user = await Manager.findOneBy({id: userId});
         }
 
         if(!user) {
@@ -41,11 +40,10 @@ const autoLogin = async (req: any, res: any) => {
             return res.status(500).json({});
         }
 
-        return res.status(200).json({role: userRole, data: user});
-    }   
+        req.user = user;
+        next();
+    }
     catch (error) {
-        
+
     }
 }
-
-export default autoLogin
