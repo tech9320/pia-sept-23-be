@@ -29,7 +29,7 @@ const updateScheduledExamination = async (req: any, res: any) => {
   } else {
     ScheduledExamination.update(id, {
       reasonForComing,
-      time,
+      startTime: time,
       date,
       patient,
       examination,

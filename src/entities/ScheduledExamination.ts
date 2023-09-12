@@ -20,8 +20,11 @@ export class ScheduledExamination extends BaseEntity {
   @Column()
   reasonForComing: string;
 
-  @Column()
-  time: string;
+  @Column('time')
+  startTime: Date;
+
+  @Column('time')
+  endTime: Date
 
   @Column()
   date: Date;

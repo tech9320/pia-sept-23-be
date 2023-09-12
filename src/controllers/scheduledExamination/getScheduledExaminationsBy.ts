@@ -13,7 +13,7 @@ const getScheduledExaminationsBy = async (req: any, res: any) => {
       "doctor",
       // "report"
     ],
-    order: {date: 'ASC', time: 'ASC'}
+    order: {date: 'ASC', startTime: 'ASC'}
   })
   const filteredScheduledExaminations: ScheduledExamination[] = [];
   for (const scheduledExamination of scheduledExaminations) {
