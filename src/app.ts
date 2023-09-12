@@ -1,6 +1,7 @@
 import connectDB from "./db/connection";
 import express from "express";
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
 
 const app = express();
 
@@ -18,8 +19,9 @@ import { pendingRegistrationRouter } from "./routes/pendingRegistration";
 import { authRouter } from "./routes/auth";
 
 // middleware
-app.use(cors());
+app.use(cors({origin: 'http://localhost:4200', credentials: true}));
 app.use(express.json());
+app.use(cookieParser());
 app.use(
   "/api/v1/",
   patientRouter,

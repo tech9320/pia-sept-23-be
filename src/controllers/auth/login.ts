@@ -5,7 +5,6 @@ import { Patient } from "../../entities/Patient";
 
 
 const login = async (req: any, res: any) => {
-    console.log(req)
     const { userName, password, userRole } = req.body;
     if(!userName || !password || !userRole) {
         return res.status(400).json({msg: 'Please fill out all required fields.'});
@@ -41,7 +40,8 @@ const login = async (req: any, res: any) => {
         expirationTime.setMinutes(expirationTime.getMinutes() + 30);
     
         const session = Session.create({
-            role: userRole,
+            userRole,
+            userId: user.id,
             expiresAt: expirationTime 
         });
 

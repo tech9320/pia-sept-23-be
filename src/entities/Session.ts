@@ -6,7 +6,10 @@ class Session extends BaseEntity {
     id: number
 
     @Column()
-    role: string
+    userId: number
+
+    @Column()
+    userRole: string
 
     @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
     createdAt: Date
