@@ -17,13 +17,14 @@ const addScheduledExamination = async (req: any, res: any) => {
   }
 
   try {
+    const doctorId = doctor.id;
     const overlappingExaminations = await ScheduledExamination.createQueryBuilder('se')
     .innerJoin('se.examination', 'ex')
     .where('ex.isPendingApproval = :isPendingApproval', { isPendingApproval: false })
+    .andWhere('se.doctor.id = :doctorId', { doctorId })
     .andWhere('se.date = :date', { date })
     .andWhere('se.startTime <= :endTime AND se.endTime >= :startTime', { startTime, endTime })
     .getMany();
-    console.log(overlappingExaminations)
     if(overlappingExaminations.length > 0) {
       return res.status(400).json({msg: 'The doctor is not available for that period.'});
     }
