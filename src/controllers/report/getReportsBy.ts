@@ -6,13 +6,13 @@ const getReportsBy = async (req: any, res: any) => {
   const type = path[2];
 
   Report.createQueryBuilder('report')
-  .innerJoinAndSelect('report.scheduledExamination', 'scheduledExamination')
-  .innerJoinAndSelect('scheduledExamination.patient', 'patient')
-  .innerJoinAndSelect('scheduledExamination.examination', 'examination')
-  .innerJoinAndSelect('scheduledExamination.doctor', 'doctor')
+  .innerJoinAndSelect('report.scheduledExamination', 'se')
+  .innerJoinAndSelect('se.patient', 'patient')
+  .innerJoinAndSelect('se.examination', 'examination')
+  .innerJoinAndSelect('se.doctor', 'doctor')
   .innerJoinAndSelect('doctor.specialization', 'specialization')
-  .orderBy('scheduledExamination.date', 'DESC')
-  .addOrderBy('scheduledExamination.time', 'DESC')
+  .orderBy('se.date', 'DESC')
+  .addOrderBy('se.startTime', 'DESC')
   .getMany()
     .then((reports) => {
       const filteredReports: Report[] = [];
