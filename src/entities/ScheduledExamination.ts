@@ -36,11 +36,11 @@ export class ScheduledExamination extends BaseEntity {
   @JoinColumn({ name: "examination_id" })
   examination: Examination;
 
-  @ManyToOne(() => Patient, (patient) => patient.scheduledExaminations)
+  @ManyToOne(() => Patient, (patient) => patient.scheduledExaminations, { onDelete: 'CASCADE' })
   @JoinColumn({ name: "patient_id" })
   patient: Patient;
 
-  @ManyToOne(() => Doctor, (doctor) => doctor.scheduledExaminations)
+  @ManyToOne(() => Doctor, (doctor) => doctor.scheduledExaminations, { onDelete: 'CASCADE' })
   @JoinColumn({ name: "doctor_id" })
   doctor: Doctor
 
