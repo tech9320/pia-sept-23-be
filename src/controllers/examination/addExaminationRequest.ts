@@ -11,7 +11,7 @@ export const addExaminationRequest = async (req: any, res: any) => {
     }
     doctor.examinationRequests = examinations;
     await doctor.save();
-    return res.status(201);
+    return res.status(201).json({msg: 'Request successfully created.'});
 }
 
 export default addExaminationRequest;
