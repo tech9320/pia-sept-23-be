@@ -1,12 +1,17 @@
-import { PendingRegistration } from "../../entities/PendingRegistration"
+import { Patient } from "../../entities/Patient";
 
 const getPendingRegistrations = async (req: any, res: any) => {
     try {
-        const pendingRegistrations = await PendingRegistration.find();
-        if(pendingRegistrations) res.status(200).json(pendingRegistrations)
+        const pendingRegistrations = await Patient.createQueryBuilder('patient')
+        .where('patient.registrationStatus = :status', {status: 'pending'})
+        .getMany();
+        if(pendingRegistrations) {
+            return res.status(200).json(pendingRegistrations);
+        }
+        return res.status(200).json([]);
     }
     catch(error) {
-        res.status(500).json({mgs: 'Something went wrong. Please try again later.'});
+        return res.status(500).json({mgs: 'Something went wrong. Please try again later.'});
     }
 }
 

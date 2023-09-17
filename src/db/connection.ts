@@ -10,7 +10,6 @@ import { Notification } from "../entities/Notification";
 import { MessageToManager } from "../entities/MessageToManager";
 import { RejectedEmail } from "../entities/rejectedEmail";
 import { RejectedUserName } from "../entities/rejectedUserName";
-import { PendingRegistration } from "../entities/PendingRegistration";
 import Session from "../entities/Session";
 
 const connectDB = new DataSource({
@@ -32,7 +31,6 @@ const connectDB = new DataSource({
     MessageToManager,
     RejectedEmail,
     RejectedUserName,
-    PendingRegistration,
     Session
   ],
   synchronize: true,

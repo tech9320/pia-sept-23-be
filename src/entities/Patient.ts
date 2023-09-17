@@ -21,4 +21,9 @@ export class Patient extends Manager {
 
   @OneToMany(() => Notification, (notification) => notification.patient)
   notifications: Notification[];
+
+  @Column({
+    default: 'pending',
+  })
+  registrationStatus: string;
 }

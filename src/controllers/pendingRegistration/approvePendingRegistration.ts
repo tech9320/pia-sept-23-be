@@ -1,6 +1,6 @@
 import { Patient } from "../../entities/Patient";
 
-const declinePendingRegistration = async (req: any, res: any) => {
+const approvePendingRegistration = async (req: any, res: any) => {
     const { id } = req.body;
 
     try{
@@ -8,13 +8,13 @@ const declinePendingRegistration = async (req: any, res: any) => {
         if(!patient) {
             return res.status(404).json({msg: 'User with given id was not found.'});
         }
-        patient.registrationStatus = 'declined';
+        patient.registrationStatus = 'approved';
         await patient.save();
-        res.status(204).json({msg: 'Registration declined.'});
+        res.status(204).json({msg: 'Registration approved.'});
     }
     catch (error) {
         res.send(500).json({ msg: 'Something went wrong. Please try again later.' });
     }
 }
 
-export default declinePendingRegistration;
+export default approvePendingRegistration;
