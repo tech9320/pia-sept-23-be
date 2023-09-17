@@ -1,6 +1,4 @@
 import { Patient } from "../../entities/Patient";
-import { RejectedUserName } from "../../entities/rejectedUserName";
-import { RejectedEmail } from "../../entities/rejectedEmail";
 
 const updatePatient = async (req: any, res: any) => {
   const id = parseInt(req.params.id);
@@ -41,14 +39,6 @@ const updatePatient = async (req: any, res: any) => {
     email: email,
   });
 
-  const rejectedUserName = await RejectedUserName.findOneBy({
-    userName: userName,
-  });
-
-  const rejectedEmail = await RejectedEmail.findOneBy({
-    email: email,
-  });
-
   if (!patientById) {
     res.status(400).json({ msg: "The patient id you entered does not exist." });
     return;
@@ -58,10 +48,6 @@ const updatePatient = async (req: any, res: any) => {
   } else if (patientByEmail && patientByEmail.id !== id) {
     res.status(400).json({ msg: "Patient with this email already exist." });
     return;
-  } else if (rejectedUserName) {
-    res.status(400).json({ msg: "Patient with this username was rejected." });
-  } else if (rejectedEmail) {
-    res.status(400).json({ msg: "Patient with this email was rejected." });
   } else {
     Patient.update(id, {
       userName,

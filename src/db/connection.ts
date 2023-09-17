@@ -8,8 +8,6 @@ import { Report } from "../entities/Report";
 import { Specialization } from "../entities/Specialization";
 import { Notification } from "../entities/Notification";
 import { MessageToManager } from "../entities/MessageToManager";
-import { RejectedEmail } from "../entities/rejectedEmail";
-import { RejectedUserName } from "../entities/rejectedUserName";
 import Session from "../entities/Session";
 
 const connectDB = new DataSource({
@@ -29,8 +27,6 @@ const connectDB = new DataSource({
     Specialization,
     Notification,
     MessageToManager,
-    RejectedEmail,
-    RejectedUserName,
     Session
   ],
   synchronize: true,
