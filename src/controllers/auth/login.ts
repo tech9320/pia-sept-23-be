@@ -16,6 +16,7 @@ const login = async (req: any, res: any) => {
             user = await Patient.createQueryBuilder('patient')
             .addSelect('patient.password')
             .where(`patient.userName = :userName`, { userName })
+            .andWhere('patient.registrationStatus = :status', { status: 'approved' })
             .getOne();
         }
         if(userRole === 'doctor') {
