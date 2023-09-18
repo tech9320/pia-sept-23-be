@@ -2,9 +2,9 @@ import { Examination } from "../../entities/Examination";
 
 const updateExamination = async (req: any, res: any) => {
   const id = parseInt(req.params.id);
-  const { type, durationInMinutes, price } = req.body;
+  const { durationInMinutes, price } = req.body;
 
-  if (!type) {
+  if (!price) {
     res.status(400).json({ msg: "Please fill out all required fields." });
     return;
   }
@@ -19,11 +19,7 @@ const updateExamination = async (req: any, res: any) => {
       .json({ msg: "The examination id you entered does not exist." });
     return;
   } else {
-    Examination.update(id, {
-      type,
-      durationInMinutes,
-      price
-    })
+    Examination.update(id, { price , durationInMinutes: durationInMinutes || 30 })
       .then(() => {
         res.status(200).json({ msg: "Examination was successfully updated." });
       })
