@@ -53,15 +53,15 @@ const updateDoctor = async (req: any, res: any) => {
     res.status(400).json({ msg: "The doctor id you entered does not exist." });
     return;
   } else if (doctorByUserName && doctorByUserName.id !== id) {
-    res.status(400).json({ msg: "Doctor with this username already exist." });
+    res.status(400).json({ msg: "Doctor with this username already exists." });
     return;
   } else if (doctorByEmail && doctorByEmail.id !== id) {
-    res.status(400).json({ msg: "Doctor with this email already exist." });
+    res.status(400).json({ msg: "Doctor with this email already exists." });
     return;
   } else if (doctorByLicenceNumber && doctorByLicenceNumber.id !== id) {
     res
       .status(400)
-      .json({ msg: "Doctor with this licence number already exist." });
+      .json({ msg: "Doctor with this licence number already exists." });
     return;
   } else {
     Doctor.update(id, {

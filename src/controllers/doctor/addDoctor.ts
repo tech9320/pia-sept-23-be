@@ -68,14 +68,14 @@ const addDoctor = async (req: any, res: any) => {
       console.log("err", err);
     }
   } else if (doctorByUserName) {
-    res.status(400).json({ msg: "Doctor with this username already exist." });
+    res.status(400).json({ msg: "Doctor with this username already exists." });
     return;
   } else if (doctorByEmail) {
-    res.status(400).json({ msg: "Doctor with this email already exist." });
+    res.status(400).json({ msg: "Doctor with this email address already exists." });
   } else if (doctorByLicenceNumber) {
     res
       .status(400)
-      .json({ msg: "Doctor with this licence number already exist." });
+      .json({ msg: "Doctor with this licence number already exists." });
   }
 };
 
