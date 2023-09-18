@@ -4,16 +4,16 @@ const declinePendingRegistration = async (req: any, res: any) => {
     const { id } = req.body;
 
     try{
-        const patient = await Patient.findOneBy(id);
+        const patient = await Patient.findOneBy({id});
         if(!patient) {
             return res.status(404).json({msg: 'User with given id was not found.'});
         }
         patient.registrationStatus = 'declined';
         await patient.save();
-        res.status(204).json({msg: 'Registration declined.'});
+        return res.status(204).json({msg: 'Registration declined.'});
     }
     catch (error) {
-        res.send(500).json({ msg: 'Something went wrong. Please try again later.' });
+        return res.send(500).json({ msg: 'Something went wrong. Please try again later.' });
     }
 }
 
