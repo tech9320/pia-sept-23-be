@@ -17,11 +17,10 @@ const addScheduledExamination = async (req: any, res: any) => {
   }
 
   try {
-    const doctorId = doctor.id;
     const overlappingExaminations = await ScheduledExamination.createQueryBuilder('se')
     .innerJoin('se.examination', 'ex')
     .where('ex.isPendingApproval = :isPendingApproval', { isPendingApproval: false })
-    .andWhere('se.doctor.id = :doctorId', { doctorId })
+    .andWhere('se.doctor.id = :doctor', { doctor })
     .andWhere('se.date = :date', { date })
     .andWhere('se.startTime <= :endTime AND se.endTime >= :startTime', { startTime, endTime })
     .getMany();
